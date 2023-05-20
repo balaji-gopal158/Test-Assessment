@@ -1,0 +1,362 @@
+<div class="form">
+    <form class="form" [formGroup]="myGroup" (submit)="Dologin()">
+    <div class="col-md-4">
+      <label for="validationDefault01" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationDefault01" placeholder="Enter Your First Name"formControlName="FirstName" required>
+      <p class="alert" *ngIf="FirstNameCntrl.touched&&FirstNameCntrl.invalid">This Field is required</p>
+    </div>
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationDefault02" placeholder="Enter Your Last Name" formControlName="LastName" required>
+      <p class="alert" *ngIf="LastNameCntrl.touched&&LastNameCntrl.invalid">This Field is required</p>
+    </div>
+    <div class="col-md-4">
+      <label for="validationDefaultdob" class="form-label">Date of Birth</label>
+      <div class="input-group">
+        <input type="date" class="form-control" id="validationDefaultdob"[max]="maxDate"formControlName="DateofBirth"  aria-describedby="inputGroupPrepend2" required>
+        <p class="alert" *ngIf="DateofBirthCntrl.touched&&DateofBirthCntrl.invalid">Age is must not be less than 18 years</p> 
+    </div>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Email</label>
+        <input type="text" class="form-control" id="validationDefault01" formControlName="Email"  placeholder="Enter Your First Email" required>
+        <p class="alert" *ngIf="EmailCntrl.touched&&EmailCntrl.invalid">This Field is required</p>  
+    </div>
+      <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" id="validationDefault01"formControlName="MobileNumber"  placeholder="Enter Your Mobile Number" required>
+        <p class="alert" *ngIf="MobileNumberCntrl.touched&&MobileNumberCntrl.invalid">This Field is required</p>  
+    </div>
+      
+    <div class="col-md-3">
+      <label for="validationDefault04" class="form-label">Id Proof*</label>
+      <select class="form-select" id="validationDefault04" formControlName="IdProof"required>
+        <p class="alert" *ngIf="IdProofCntrl.touched&&IdProofCntrl.invalid">This Field is required</p>
+        <option selected disabled value="">Choose...</option>
+        
+        <option value="aadhar">Aadhar</option>
+        <option value="pan">Pan</option>
+        <option value="passport">Passport</option>
+        <option value="driving license">Driving License</option>
+        <option value="voter id">Voter Id</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Id Number*</label>
+        <input type="text" class="form-control" id="validationDefault01" formControlName="IdNumber" placeholder="Enter Your Id Number" required>
+        <p class="alert" *ngIf="IdNumberCntrl.touched&&IdNumberCntrl.invalid">This Field is required</p> 
+    </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Address Line1*</label>
+        <input type="textarea" class="form-control" id="validationDefault03"formControlName="AddressLine1" required>
+        <p class="alert" *ngIf="AddressLine1Cntrl.touched&&AddressLine1Cntrl.invalid">This Field is required</p>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Address Line2</label>
+        <input type="textarea" class="form-control" id="validationDefault03" formControlName="AddressLine2"required>
+        <p class="alert" *ngIf="AddressLine2Cntrl.touched&&AddressLine2Cntrl.invalid">This Field is required</p>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">Address Line3</label>
+        <input type="textarea" class="form-control" id="validationDefault03"formControlName="AddressLine3" required>
+        <p class="alert" *ngIf="AddressLine3Cntrl.touched&&AddressLine3Cntrl.invalid">This Field is required</p>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">LandMark</label>
+        <input type="text" class="form-control" id="validationDefault03" formControlName="LandMark"required>
+        <p class="alert" *ngIf="LandMarkCntrl.touched&&LandMarkCntrl.invalid">This Field is required</p>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault03" class="form-label">City</label>
+        <input type="text" class="form-control" id="validationDefault03"formControlName="City" placeholder="Enter Your City"required>
+        <p class="alert" *ngIf="CityCntrl.touched&&CityCntrl.invalid">This Field is required</p>
+      </div>
+      <div class="col-md-3">
+      <label for="validationDefault05" class="form-label">State</label>
+      <input type="text" class="form-control" id="validationDefault05"formControlName="State"placeholder="Enter Your State" required>
+      <p class="alert" *ngIf="StateCntrl.touched&&StateCntrl.invalid">This Field is required</p>
+    </div>
+    <span class="para">If Nominees :</span>
+      <div class="form-check form-check-inline" class="para">
+       
+        <label class="form-check-label" for="inlineCheckbox1">YES</label>
+        <input class="form-check-input" type="radio" id="chbox"name="cbox"value="yes"  (change)="onClickopenform()">
+        
+      </div>
+      <div class="form-check form-check-inline" class="para">
+        <label class="form-check-label" for="inlineCheckbox1">NO</label>
+        <input class="form-check-input" type="radio" id="inlineCheckbox1" name="cbox"value="no">
+      </div>
+     <!--NOMINEE FORM        -->
+      <div *ngIf="openform">
+        <form class="form" [formGroup]="myGroup" (submit)=" Dologin()">
+            <h1>Nominee Details</h1>
+        <div class="col-md-4">
+          <label for="validationDefault01" class="form-label">First name</label>
+          <input type="text" class="form-control" id="validationDefault01"formControlName="NomFirstName"  placeholder="Enter Your First Name" required>
+          <p class="alert" *ngIf="NomFirstNameCntrl.touched&&NomFirstNameCntrl.invalid">This Field is required</p>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefault02" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="validationDefault02"formControlName="NomLastName" placeholder="Enter Your Last Name" required>
+          <p class="alert" *ngIf="NomLastNameCntrl.touched&&NomLastNameCntrl.invalid">This Field is required</p>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefaultdob" class="form-label">Date of Birth</label>
+          <div class="input-group">
+            <input type="date" class="form-control" id="validationDefaultdob"formControlName="NomDateofBirth"  aria-describedby="inputGroupPrepend2" required>
+            <p class="alert" *ngIf="NomDateofBirthCntrl.touched&&NomDateofBirthCntrl.invalid">This Field is required</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Email</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="NomEmail"  placeholder="Enter Your First Email" required>
+            <p class="alert" *ngIf="NomEmailCntrl.touched&&NomEmailCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="NomMobileNumber"  placeholder="Enter Your Mobile Number" required>
+            <p class="alert" *ngIf="NomMobileNumberCntrl.touched&&NomMobileNumberCntrl.invalid">This Field is required</p>
+          </div>
+        
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Id Proof*</label>
+          <select class="form-select" id="validationDefault04"formControlName="NomIdProof" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="aadhar" >Aadhar</option>
+            <option value="pan">Pan</option>
+            <option value="passport">Passport</option>
+            <option value="driving license">Driving License</option>
+            <option value="voter id">Voter Id</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Id Number*</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="NomIdNumber"  placeholder="Enter Your Id Number" required>
+            <p class="alert" *ngIf="NomIdNumberCntrl.touched&&NomIdNumberCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line1*</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="NomAddressLine1" required>
+            <p class="alert" *ngIf="NomAddressLine1Cntrl.touched&&NomAddressLine1Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line2</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="NomAddressLine2" required>
+            <p class="alert" *ngIf="NomAddressLine2Cntrl.touched&&NomAddressLine2Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line3</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="NomAddressLine3" required>
+            <p class="alert" *ngIf="NomAddressLine3Cntrl.touched&&NomAddressLine3Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">LandMark</label>
+            <input type="text" class="form-control" id="validationDefault03"formControlName="NomLandMark" required>
+            <p class="alert" *ngIf="NomLandMarkCntrl.touched&&NomLandMarkCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationDefault03"formControlName="NomCity" placeholder="Enter Your City"required>
+            <p class="alert" *ngIf="NomCityCntrl.touched&&NomCityCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">State</label>
+          <input type="text" class="form-control" id="validationDefault05"formControlName="NomState"placeholder="Enter Your Id State" required>
+          <p class="alert" *ngIf="NomStateCntrl.touched&&NomStateCntrl.invalid">This Field is required</p>
+        </div>
+        <span class="para">If Age is Below 18 Years :</span>
+      <div class="form-check form-check-inline" class="para">
+       
+        <label class="form-check-label" for="inlineCheckbox1">YES</label>
+        <input class="form-check-input" type="radio" id="chbox"name="cbox"value="yes"  (change)="onClickopenform1()">
+      </div>
+      <div class="form-check form-check-inline" class="para">
+        <label class="form-check-label" for="inlineCheckbox1">NO</label>
+        <input class="form-check-input" type="radio" id="inlineCheckbox1" name="cbox"value="no">
+      </div>
+      <!--Guardian Details-->
+      <div *ngIf="openform1">
+        <h1>Guardian Details</h1>
+        <form class="form" [formGroup]="myGroup" (submit)="Dologin()">
+        <div class="col-md-4">
+          <label for="validationDefault01" class="form-label">First name</label>
+          <input type="text" class="form-control" id="validationDefault01"formControlName="GuardFirstName"  placeholder="Enter Your First Name" required>
+          <p class="alert" *ngIf="GuardFirstNameCntrl.touched&&GuardFirstNameCntrl.invalid">This Field is required</p>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefault02" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="validationDefault02"formControlName="GuardLastName" placeholder="Enter Your Last Name" required>
+          <p class="alert" *ngIf="GuardLastNameCntrl.touched&&GuardLastNameCntrl.invalid">This Field is required</p>
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefaultdob" class="form-label">Date of Birth</label>
+          <div class="input-group">
+            <input type="date" class="form-control" id="validationDefaultdob"formControlName="GuardDateofBirth"  aria-describedby="inputGroupPrepend2" required>
+            <p class="alert" *ngIf="GuardDateofBirth.touched&&GuardDateofBirth.invalid">This Field is required</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Email</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="GuardEmail"  placeholder="Enter Your First Email" required>
+            <p class="alert" *ngIf="GuardEmailCntrl.touched&&GuardEmailCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Mobile Number</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="GuardMobileNumber"  placeholder="Enter Your Mobile Number" required>
+            <p class="alert" *ngIf="GuardMobileNumCntrl.touched&&GuardMobileNumCntrl.invalid">This Field is required</p>
+          </div>
+        
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Id Proof*</label>
+          <select class="form-select" id="validationDefault04"formControlName="GuardIdProof" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="aadhar">Aadhar</option>
+            <option value="pan">Pan</option>
+            <option value="passport">Passport</option>
+            <option value="driving license">Driving License</option>
+            <option value="voter id">Voter Id</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Id Number*</label>
+            <input type="text" class="form-control" id="validationDefault01"formControlName="GuardIdNumber"  placeholder="Enter Your Id Number" required>
+            <p class="alert" *ngIf="GuardIdCntrl.touched&&GuardIdCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line1*</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="GuardAddressLine1" required>
+            <p class="alert" *ngIf="GuardAddressLine1Cntrl.touched&&GuardAddressLine1Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line2</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="GuardAddressLine2" required>
+            <p class="alert" *ngIf="GuardAddressLine2Cntrl.touched&&GuardAddressLine2Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">Address Line3</label>
+            <input type="textarea" class="form-control" id="validationDefault03"formControlName="GuardAddressLine3" required>
+            <p class="alert" *ngIf="GuardAddressLine3Cntrl.touched&&GuardAddressLine3Cntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">LandMark</label>
+            <input type="text" class="form-control" id="validationDefault03"formControlName="GuardLandMark" required>
+            <p class="alert" *ngIf="GuardLandMarkCntrl.touched&&GuardLandMarkCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault03" class="form-label">City</label>
+            <input type="text" class="form-control" id="validationDefault03"formControlName="GuardCity" placeholder="Enter Your City"required>
+            <p class="alert" *ngIf="GuardCityCntrl.touched&&GuardCityCntrl.invalid">This Field is required</p>
+          </div>
+          <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">State</label>
+          <input type="text" class="form-control" id="validationDefault05"formControlName="GuardState"placeholder="Enter Your Id State" required>
+          <p class="alert" *ngIf="GuardStateCntrl.touched&&GuardStateCntrl.invalid">This Field is required</p>
+        </div>
+        </form>
+      </div>
+        </form>
+      </div>
+        <div class="col-12" class="para">
+            <button class="btn btn-primary" type="submit" >Submit form</button>
+          </div>
+  </form>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>DOB</th>
+              <th>Email</th>
+              <th>MobileNumber</th>
+              <th>IdProof</th>
+              <th>IdNumber</th>
+              <th>AddressLine1</th>
+              <th>AddressLine2</th>
+              <th>AddressLine3</th>
+              <th>LandMark</th>
+              <th>City</th>
+              <th>State</th>
+
+              <th>NomName</th>
+              <th>NomLastName</th>
+              <th>NomDOB</th>
+              <th>NomEmail</th>
+              <th>NomMobileNumber</th>
+              <th>NomIdProof</th>
+              <th>NomIdNumber</th>
+              <th>NomAddressLine1</th>
+              <th>NomAddressLine2</th>
+              <th>NomAddressLine3</th>
+              <th>NomLandMark</th>
+              <th>NomCity</th>
+              <th>NomState</th>
+
+              <th>GrdName</th>
+              <th>GrdLastName</th>
+              <th>GrdDOB</th>
+              <th>GrdEmail</th>
+              <th>GrdMobileNumber</th>
+              <th>GrdIdProof</th>
+              <th>GrdIdNumber</th>
+              <th>GrdAddressLine1</th>
+              <th>GrdAddressLine2</th>
+              <th>GrdAddressLine3</th>
+              <th>GrdLandMark</th>
+              <th>GrdCity</th>
+              <th>GrdState</th>
+
+            </tr>
+        </thead>
+            <tbody>
+                <tr *ngFor="let item of customerData ">
+                  <td>{{item.FirstName}}</td>
+                  <td>{{item.LastName}}</td>
+                  <td>{{item.DateofBirth}}</td>
+                  <td>{{item.Email}}</td>
+                  <td>{{item.MobileNumber}}</td>
+                  <td>{{item.IdProof}}</td>
+                  <td>{{item.IdNumber}}</td>
+                  <td>{{item.AddressLine1}}</td>
+                  <td>{{item.AddressLine2}}</td>
+                  <td>{{item.AddressLine3}}</td>
+                  <td>{{item.LandMark}}</td>
+                  <td>{{item.City}}</td>
+                  <td>{{item.State}}</td>
+
+                  <td>{{item.NomFirstName}}</td>
+                  <td>{{item.NomLastName}}</td>
+                  <td>{{item.NomDateofBirth}}</td>
+                  <td>{{item.NomEmail}}</td>
+                  <td>{{item.NomMobileNumber}}</td>
+                  <td>{{item.NomIdProof}}</td>
+                  <td>{{item.NomIdNumber}}</td>
+                  <td>{{item.NomAddressLine1}}</td>
+                  <td>{{item.NomAddressLine2}}</td>
+                  <td>{{item.NomAddressLine3}}</td>
+                  <td>{{item.NomLandMark}}</td>
+                  <td>{{item.NomCity}}</td>
+                  <td>{{item.NomState}}</td>
+
+                  <td>{{item.GuardFirstName}}</td>
+                  <td>{{item.GuardLastName}}</td>
+                  <td>{{item.GuardDateofBirth}}</td>
+                  <td>{{item.GuardEmail}}</td>
+                  <td>{{item.GuardMobileNumber}}</td>
+                  <td>{{item.GuardIdProof}}</td>
+                  <td>{{item.GuardIdNumber}}</td>
+                  <td>{{item.GuardAddressLine1}}</td>
+                  <td>{{item.GuardAddressLine2}}</td>
+                  <td>{{item.GuardAddressLine3}}</td>
+                  <td>{{item.GuardLandMark}}</td>
+                  <td>{{item.GuardCity}}</td>
+                  <td>{{item.GuardState}}</td>
+                </tr>
+                
+                  
+              </tbody>
+          
+    </table>
+  </div>
